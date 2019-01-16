@@ -1,0 +1,13 @@
+// Add your customization SASS here
+// It runs before the rest of SASS in the project, useful to set variables
+
+// $uikit-global-link-color: #e1780f;
+// $uikit-global-link-hover-color: #f09132;
+// $uikit-form-focus-border: #e1780f;
+
+$fa-font-path:    "../webfonts";
+
+
+@import           "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import           "../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import           "../../node_modules/@fortawesome/fontawesome-free/scss/regular.scss";

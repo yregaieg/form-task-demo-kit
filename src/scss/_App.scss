@@ -1,0 +1,16 @@
+html,
+body,
+#root {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: rgb(247, 247, 247);
+}
+.app {
+  min-height: 100%;
+  display: flex;
+  background: rgb(247, 247, 247);
+  &.no-logged {
+    height: 100%;
+  }
+}

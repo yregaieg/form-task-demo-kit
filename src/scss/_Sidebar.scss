@@ -1,0 +1,44 @@
+.sidebar {
+  flex: 0 0 auto;
+  width: 250px;
+  outline: none;
+  font-family: -apple-system, ".SFNSText-Regular", "San Francisco",
+    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Fira Sans", "Droid Sans", "Helvetica Neue", "Lucida Grande", Arial,
+    sans-serif;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  &-title {
+    color: gray;
+    font-size: 11px;
+    padding: 30px 17px 10px 21px;
+  }
+  &-item {
+    padding: 6px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid transparent;
+    &.selected {
+      background-color: white;
+      transform: translateZ(1px);
+      margin-right: -1px;
+      border-top: 1px solid rgb(236, 236, 236);
+      border-bottom: 1px solid rgb(236, 236, 236);
+      border-left: 1px solid rgb(236, 236, 236);
+    }
+    &:hover {
+      background-color: rgb(236, 236, 236);
+    }
+  }
+  .modeler-link {
+    position: fixed;
+    bottom: 14px;
+    left: 21px;
+    font-size: 14px;
+  }
+}

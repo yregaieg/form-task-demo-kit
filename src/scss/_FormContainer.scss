@@ -1,0 +1,108 @@
+
+@import "node_modules/@flowable/forms-react/scss/index.scss";
+
+.rejt-tree {
+  @include uikit-uk-input;
+  @include uikit-uk-input-;
+  @include uikit-uk-input--;
+  @include uikit-uk-input---;
+  font-family: $uikit-global-font-family;
+  font-size: $flw-global-small-font-size;
+  height: 100%;
+  ul {
+    margin-left: 10px !important;
+    border-left: 1px solid whitesmoke;
+    > * {
+      padding-left: 6px;
+      font-family: $uikit-global-font-family;
+    }
+    li {
+      line-height: 1 !important;
+      min-height: 12px !important;
+    }
+  }
+  .rejt-minus-menu,
+  .rejt-plus-menu {
+    cursor: pointer;
+    display: none;
+  }
+  .rejt-object-node:hover > span > span {
+    > .rejt-minus-menu,
+    > .rejt-plus-menu {
+      display: inline;
+    }
+  }
+  .rejt-value-node:hover {
+    .rejt-minus-menu,
+    .rejt-plus-menu {
+      display: inline;
+    }
+  }
+}
+.flw-storybook-layout-cell {
+  background-color: lightblue;
+  line-height: 50px;
+  text-align: center;
+  color: #2f7e98;
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+}
+.flw-storybook-result-cell:not(:empty) {
+  @include uikit-uk-tile-muted;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+  justify-content: center;
+  display: flex;
+}
+
+.slide {
+  background: linear-gradient(
+    to right,
+    #e100ff,
+    #7f00ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  text-align: center;
+  padding: 120px 0;
+  h1 {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+.scriptingText {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+}
+.collapse,
+.uncollapse {
+  width: 20px;
+  height: 20px;
+  float: right;
+  cursor: pointer;
+}
+@mixin icon($svg, $color) {
+  content: "";
+  background-image: url(svg-encode(str-rep($svg, "#000", $color)));
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.collapse {
+  &::before {
+    @include icon($flw-triangle-up-icon, #000);
+  }
+}
+.uncollapse {
+  &::before {
+    @include icon($flw-triangle-down-icon, #000);
+  }
+}
+
+.form-container {
+  flex: 1 1 auto;
+  margin: 10px 10px 10px 0;
+  border: 1px solid rgb(236, 236, 236);
+  border-radius: 4px;
+  padding: 30px;
+  background: white;
+}

@@ -1,0 +1,414 @@
+// Add your customization SASS here
+// It runs before the rest of SASS in the project, useful to rewrite some rules with yours
+.flw__storybook__panel {
+  margin-top: 150px;
+}
+
+.flw__text {
+  position: relative;
+}
+
+.flw__text__label {
+  position: absolute;
+  top: -12px;
+  left: 8px;
+  color: darkgray;
+  transition: all 0.3s;
+  pointer-events: none;
+  font-size: 12px;
+  border: 0px white solid;
+  padding: 3px;
+  background: white;
+}
+.flw__text--focused__label {
+  color: #1e87f0;
+
+}
+.flw__text__input {
+  box-shadow: none;
+}
+.flw__text--empty__label {
+  top: 8px;
+  font-size: 14px;
+}
+
+.flw__text--focused__label.flw__text--empty__label {
+  position: absolute;
+  top: -12px;
+  left: 8px;
+  color: #1e87f0;
+  transition: all 0.3s;
+  pointer-events: none;
+  font-size: 12px;
+  background: white;
+}
+.flw__wizard__footer {
+  display: flex;
+  margin-top: 40px;
+}
+
+.flw__wizard__stages {
+  margin-bottom: 40px;
+}
+
+.flw__wizard__stages__stage--active::before, .flw__wizard__stages__stage--active::after {
+  border-color: #4977a6;
+}
+
+.flw__wizard__stages__stage--active {
+  color: #4977a6;
+}
+
+.flw__wizard__stages__stage {
+  height: 40px;
+  font-size: 20px;
+}
+
+.flw__component__button, .rai__button__base--button__a {
+  font-weight: 300;
+  font-size: 24px;
+  padding: 16px 61px 14px 19px;
+  line-height: 22px;
+  position: relative;
+  border: 1px solid transparent;
+  outline: none;
+  text-align: left;
+  background: #688bb6;
+  color: #fff;
+  height: 60px;
+  min-width: 200px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.flw__component__button:hover, .rai__button__base--button__a:hover,
+.flw__component__button:hover:enabled, .rai__button__base--button__a:hover:enabled,
+.flw__component__button:active, .rai__button__base--button__a:active,
+.flw__component__button:focus,.rai__button__base--button__a:focus {
+  background: #536f92;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+.flw__wizard__footer__next:before, .rai__button__base--button__a:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f35a";
+  font-size: 32px;
+  position: absolute;
+  top: 18px;
+  right: 19px;
+}
+
+.react-toggle {
+  touch-action: pan-x;
+
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin-right: 6px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.react-toggle-screenreader-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.react-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+}
+
+.react-toggle-track {
+  width: 50px;
+  height: 24px;
+  padding: 0;
+  border-radius: 30px;
+  background-color: #4D4D4D;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: #000000;
+}
+
+.react-toggle--checked .react-toggle-track {
+  background-color: #19AB27;
+}
+
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: #128D15;
+}
+
+.react-toggle-track-check {
+  position: absolute;
+  width: 14px;
+  height: 10px;
+  top: 0px;
+  bottom: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  left: 8px;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-track-check {
+  opacity: 1;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle-track-x {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0px;
+  bottom: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  right: 10px;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-track-x {
+  opacity: 0;
+}
+
+.react-toggle-thumb {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #4D4D4D;
+  border-radius: 50%;
+  background-color: #FAFAFA;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-thumb {
+  left: 27px;
+  border-color: #19AB27;
+}
+
+.react-toggle--focus .react-toggle-thumb {
+  -webkit-box-shadow: 0px 0px 3px 2px #0099E0;
+  -moz-box-shadow: 0px 0px 3px 2px #0099E0;
+  box-shadow: 0px 0px 2px 3px #0099E0;
+}
+
+.react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {
+  -webkit-box-shadow: 0px 0px 5px 5px #0099E0;
+  -moz-box-shadow: 0px 0px 5px 5px #0099E0;
+  box-shadow: 0px 0px 5px 5px #0099E0;
+}
+
+.CalendarDay__selected, .CalendarDay__selected:active, .CalendarDay__selected:hover {
+  background: #688bb6;
+  border: 1px double #688bb6;
+  color: #fff;
+}
+
+.CalendarMonth_caption {
+  font-family: inherit;
+  color: #536f92;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 22px;
+  padding-bottom: 37px;
+  caption-side: initial;
+}
+
+.DateInput_input__focused {
+  border-bottom: none;
+  background: #f7f7f9;
+}
+
+.DateInput, .DateInput_input {
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 22px;
+  outline: none;
+  text-align: center;
+  line-height: 48px;
+  padding: 0px 0px 0;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  color: #688bb6;
+  border: 0px solid #688bb6;
+  background: #eff0f3;
+  border-radius: 0;
+}
+
+.SingleDatePickerInput {
+  background-color: #eff0f3;
+}
+
+.SingleDatePickerInput_calendarIcon_svg {
+  fill: #688bb6;
+  height: 20px;
+  width: 20px;
+}
+
+.SingleDatePicker_picker {
+  position: static;
+}
+.flw__toggle{
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+
+.rai__boolean__input{
+  background: #eff0f3;
+  border: 1px solid #688bb6;
+  height: 30px;
+  width: 30px;
+}
+
+.rai__boolean__input:checked{
+  background: #eff0f3;
+  border: 1px solid #688bb6;
+  height: 30px;
+  width: 30px;
+}
+
+.rai__boolean__input:checked:before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 34px;
+  font-weight: 900;
+  content: "\F00D";
+  color: #536f92;
+  position: absolute;
+  margin: -3px 0px 0px 2px;
+}
+
+.rai__boolean__label {
+  font-size: 16px;
+}
+
+.img-radio-button__input{
+  display: none !important;
+}
+
+
+.rai__time__radio__list{
+  margin-top: 40px;
+}
+
+.rai__time__radio__radio{
+  padding: 4px;
+}
+
+.rai__time__radio__radio__label{
+  color: white;
+  font:inherit;
+  font-weight: 300;
+  font-size: 22px;
+  padding: 4px;
+  margin-left: -138px;
+  vertical-align: middle;
+}
+
+.rai__time__radio__input{
+  background: #688bb6;
+  border: 1px solid #688bb6;
+  border-radius: 4px;
+  padding: 4px;
+  width: 150px;
+  height: 44px;
+}
+
+.rai__time__radio__input:checked{
+  background: #46607f;
+}
+
+.rai__time__radio__radio__label:active{
+  background: #46607f;
+}
+
+.img-radio-button__label {
+  opacity: 0.5;
+  height: 250px;
+  width: 300px;
+  background: white;
+  display: inline-grid;
+  padding: 22px;
+}
+
+#radio-type_indivAdvice + label {
+  background: white no-repeat url(https://www.raiffeisen.ch/content/dam/www/rch/privatkunden/beratung/teaserbilder/de/1200x400Beratungsuebersicht.jpg.transform/w1134/image.jpg) bottom;
+  background-size: 300px;
+  color: black;
+  font-size: 1.6em;
+  text-align: center;
+}
+
+#radio-type_ausnahme + label {
+  background: white no-repeat url(../img/Ausnahme.png) bottom;
+  background-size: 300px;
+  color: black;
+  font-size: 1.6em;
+  text-align: center;
+}
+
+#radio-type_nacht + label {
+  background: white no-repeat url(../img/Nacht.png) bottom;
+  background-size: 300px;
+  color: black;
+  font-size: 1.6em;
+  text-align: center;
+}
+
+.img-radio-button--active__label {
+  opacity: 1;
+}
+
