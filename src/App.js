@@ -10,7 +10,8 @@ class App extends Component {
       login: false,
       config: { rows: [] },
       selected: null,
-      initialPayload: null
+      initialPayload: null,
+      tasks: []
     };
     this.renderForm = this.renderForm.bind(this);
     this.getTaskForm = this.getTaskForm.bind(this);
@@ -18,6 +19,7 @@ class App extends Component {
     this.onOutcomePressed = this.onOutcomePressed.bind(this);
     this.saveFormData = this.saveFormData.bind(this);
     this.completeSelectedTask = this.completeSelectedTask.bind(this);
+    this.loadTasks = this.loadTasks.bind(this);
   }
 
   onOutcomePressed(payload, outComeValue) {
@@ -40,7 +42,11 @@ class App extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ action: "complete" })
-    }).then(this.setState({ selected: null }));
+    }).then(() => {
+      this.setState({ selected: null });
+      this.loadTasks();
+      alert("The task was succesfully completed");
+    });
   }
 
   saveFormData(payload) {
@@ -57,7 +63,10 @@ class App extends Component {
           values: payload
         })
       }
-    );
+    ).then(() => {
+      this.loadTasks();
+      alert("The task was succesfully saved");
+    });
   }
 
   getTaskForm(t) {
@@ -70,6 +79,12 @@ class App extends Component {
     return fetch(`flowable-task/app/rest/task-forms/${t.id}/variables`).then(
       r => r.json()
     );
+  }
+
+  loadTasks() {
+    fetch("flowable-task/process-api/runtime/tasks")
+      .then(r => r.json().then(d => this.setState({ tasks: d.data })))
+      .catch(error => console.error(error));
   }
 
   renderForm(t) {
@@ -89,10 +104,16 @@ class App extends Component {
     return (
       <div className={`app ${this.state.login ? "logged" : "no-logged"}`}>
         {!this.state.login && (
-          <Login onLogin={x => this.setState({ login: true })} />
+          <Login
+            onLogin={x => {
+              this.loadTasks();
+              this.setState({ login: true });
+            }}
+          />
         )}
         {this.state.login && (
           <Sidebar
+            taskList={this.state.tasks}
             onSelectTask={this.renderForm}
             selected={this.state.selected}
           />
@@ -105,6 +126,7 @@ class App extends Component {
             payload={this.state.initialPayload}
             onChange={console.log}
             onOutcomePressed={this.onOutcomePressed}
+            showStoryBookPanels={false}
           />
         )}
         {this.state.login && !this.state.selected && (

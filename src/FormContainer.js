@@ -18,6 +18,8 @@ export class FormContainer extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.refreshDefinition = this.refreshDefinition.bind(this);
     this.refreshPayload = this.refreshPayload.bind(this);
+    this.showStoryBookPanels = this.showStoryBookPanels.bind(this);
+    this.renderCompleteButton = this.renderCompleteButton.bind(this);
   }
 
   onChange(value) {
@@ -40,8 +42,6 @@ export class FormContainer extends React.Component {
   }
 
   render() {
-    const definition2 = JSON.parse(JSON.stringify(this.state.definition));
-    const payload2 = JSON.parse(JSON.stringify(this.state.payload));
     return (
       <div className="form-container">
         <FormControlled
@@ -102,58 +102,94 @@ export class FormContainer extends React.Component {
           })}
           forceValidations={this.state.forceVal}
         />
-        <div className="flw__panel flw__flw-form flw__storybook__panel">
-          <div className="flw__panel__row flw__flw-form__row">
-            <div className="flw__panel__col--6 flw__flw-form__col--6">
-              <div className="flw__textarea flw__component">
-                <label className="flw__label flw__textarea__label flw__component__label storybook__heading">
-                  <div
-                    className={
-                      this.state.defCollapsed ? "uncollapse" : "collapse"
-                    }
-                    onClick={() =>
-                      this.setState(st => ({
-                        defCollapsed: !st.defCollapsed,
-                        defKey: _.uid()
-                      }))
-                    }
-                  />
-                  FORM DEFINITION
-                </label>
-                <JsonTree
-                  key={this.state.defKey}
-                  data={definition2}
-                  isCollapsed={() =>
-                    console.log(this.state.defCollapsed) ||
-                    this.state.defCollapsed
-                  }
-                  onFullyUpdate={this.refreshDefinition}
-                />
+        {!this.props.formDefinition.outcomes && this.renderCompleteButton()}
+        {this.props.showStoryBookPanels && this.showStoryBookPanels()}
+      </div>
+    );
+  }
+
+  renderCompleteButton() {
+    return (
+      <div class="flw__panel__row flw__flw-form__row form__row">
+        <div class="flw__panel__col--12 flw__flw-form__col--12 form__col--12">
+          <div
+            data-flw-id="flw-default-outcome-group"
+            class="flw__buttongroup flw__container flw__buttongroup__left flw__container__left"
+          >
+            <div class="flw__buttongroup__buttongroup-item flw__container__buttongroup-item">
+              <div class="flw__outcome-button flw__component">
+                <button
+                  class="flw__outcome-button__button flw__component__button"
+                  onClick={() => {
+                    this.props.onOutcomePressed(this.state.payload, "complete");
+                  }}
+                >
+                  Complete
+                </button>
               </div>
             </div>
-            <div className="flw__panel__col--6 flw__flw-form__col--6">
-              <div className="flw__textarea flw__component">
-                <label className="flw__label flw__textarea__label flw__component__label storybook__heading">
-                  <div
-                    className={
-                      this.state.stateCollapsed ? "uncollapse" : "collapse"
-                    }
-                    onClick={() =>
-                      this.setState(st => ({
-                        stateCollapsed: !st.stateCollapsed,
-                        stateKey: _.uid()
-                      }))
-                    }
-                  />
-                  FORM STATE
-                </label>
-                <JsonTree
-                  key={this.state.stateKey}
-                  data={payload2}
-                  isCollapsed={() => this.state.stateCollapsed}
-                  onFullyUpdate={this.refreshPayload}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  showStoryBookPanels() {
+    const definition2 = JSON.parse(JSON.stringify(this.state.definition));
+    const payload2 = JSON.parse(JSON.stringify(this.state.payload));
+
+    return (
+      <div className="flw__panel flw__flw-form flw__storybook__panel">
+        <div className="flw__panel__row flw__flw-form__row">
+          <div className="flw__panel__col--6 flw__flw-form__col--6">
+            <div className="flw__textarea flw__component">
+              <label className="flw__label flw__textarea__label flw__component__label storybook__heading">
+                <div
+                  className={
+                    this.state.defCollapsed ? "uncollapse" : "collapse"
+                  }
+                  onClick={() =>
+                    this.setState(st => ({
+                      defCollapsed: !st.defCollapsed,
+                      defKey: _.uid()
+                    }))
+                  }
                 />
-              </div>
+                FORM DEFINITION
+              </label>
+              <JsonTree
+                key={this.state.defKey}
+                data={definition2}
+                isCollapsed={() =>
+                  console.log(this.state.defCollapsed) ||
+                  this.state.defCollapsed
+                }
+                onFullyUpdate={this.refreshDefinition}
+              />
+            </div>
+          </div>
+          <div className="flw__panel__col--6 flw__flw-form__col--6">
+            <div className="flw__textarea flw__component">
+              <label className="flw__label flw__textarea__label flw__component__label storybook__heading">
+                <div
+                  className={
+                    this.state.stateCollapsed ? "uncollapse" : "collapse"
+                  }
+                  onClick={() =>
+                    this.setState(st => ({
+                      stateCollapsed: !st.stateCollapsed,
+                      stateKey: _.uid()
+                    }))
+                  }
+                />
+                FORM STATE
+              </label>
+              <JsonTree
+                key={this.state.stateKey}
+                data={payload2}
+                isCollapsed={() => this.state.stateCollapsed}
+                onFullyUpdate={this.refreshPayload}
+              />
             </div>
           </div>
         </div>

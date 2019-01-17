@@ -1,26 +1,13 @@
 import React, { Component } from "react";
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-    this.loadTasks = this.loadTasks.bind(this);
-  }
-
-  loadTasks() {
-    fetch("flowable-task/process-api/runtime/tasks")
-      .then(r => r.json().then(d => this.setState({ tasks: d.data })))
-      .catch(error => console.error(error));
-  }
   render() {
-    this.loadTasks();
-
     return (
       <div className="sidebar">
         <div className="sidebar-title">Taks</div>
         <ul>
-          {this.state &&
-            this.state.tasks &&
-            this.state.tasks.map(t => (
+          {this.props.taskList &&
+            this.props.taskList.map(t => (
               <li
                 key={t.id}
                 className={`sidebar-item ${
