@@ -1,9 +1,35 @@
 import React, { Component } from "react";
 
 class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { user: this.props.user || "" };
+    this.onUserChange = this.onUserChange.bind(this);
+  }
+
+  onUserChange(event) {
+    this.setState({ user: event.target.value });
+  }
+
   render() {
     return (
       <div className="sidebar">
+        <div className="sidebar-title">
+          Filter by user
+          <input
+            type="search"
+            value={this.state.user}
+            placeholder="User..."
+            onChange={this.onUserChange}
+          />
+          <button
+            onClick={() => {
+              this.props.onUserFilter(this.state.user);
+            }}
+          >
+            Go
+          </button>
+        </div>
         <div className="sidebar-title">Taks</div>
         <ul>
           {this.props.taskList &&
@@ -21,8 +47,8 @@ class Sidebar extends Component {
               </li>
             ))}
         </ul>
-        <a href="/flowable-modeler" className="modeler-link">
-          modeler
+        <a href="/flowable-task" target="_blank" className="flowable-task-link">
+          Flowable Tasks
         </a>
       </div>
     );
