@@ -5,30 +5,29 @@ class Sidebar extends Component {
     super(props);
     this.state = { user: this.props.user || "" };
     this.onUserChange = this.onUserChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
   }
 
   onUserChange(event) {
     this.setState({ user: event.target.value });
   }
 
+  onSearch() {
+    this.props.onUserFilter(this.state.user);
+  }
+
   render() {
     return (
       <div className="sidebar">
         <div className="sidebar-title">
-          Filter by user
+          Filter by userId
           <input
             type="search"
             value={this.state.user}
-            placeholder="User..."
+            placeholder="UserId..."
             onChange={this.onUserChange}
           />
-          <button
-            onClick={() => {
-              this.props.onUserFilter(this.state.user);
-            }}
-          >
-            Go
-          </button>
+          <button onClick={this.onSearch}>Go</button>
         </div>
         <div className="sidebar-title">Taks</div>
         <ul>

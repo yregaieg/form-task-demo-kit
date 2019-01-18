@@ -11,8 +11,7 @@ class App extends Component {
       config: { rows: [] },
       selected: null,
       initialPayload: null,
-      tasks: [],
-      filterUser: ""
+      tasks: []
     };
     this.renderForm = this.renderForm.bind(this);
     this.getTaskForm = this.getTaskForm.bind(this);
@@ -21,6 +20,7 @@ class App extends Component {
     this.saveFormData = this.saveFormData.bind(this);
     this.completeSelectedTask = this.completeSelectedTask.bind(this);
     this.loadTasks = this.loadTasks.bind(this);
+    this.getFilterUser = this.getFilterUser.bind(this);
   }
 
   onOutcomePressed(payload, outComeValue) {
@@ -82,9 +82,10 @@ class App extends Component {
     );
   }
 
+  filterUser = "";
   loadTasks() {
     let url = "flowable-task/process-api/runtime/tasks";
-    if (this.state.filterUser) url = url + "?assignee=" + this.state.filterUser;
+    if (this.filterUser) url = url + "?assignee=" + this.filterUser;
 
     fetch(url)
       .then(r => r.json().then(d => this.setState({ tasks: d.data })))
@@ -101,6 +102,11 @@ class App extends Component {
         this.setState({ selected: null });
       }
     });
+  }
+
+  getFilterUser(user) {
+    this.filterUser = user;
+    this.loadTasks();
   }
 
   initialPayload = {};
@@ -120,10 +126,7 @@ class App extends Component {
             taskList={this.state.tasks}
             onSelectTask={this.renderForm}
             selected={this.state.selected}
-            onUserFilter={user => {
-              this.setState({ filterUser: user });
-              this.loadTasks();
-            }}
+            onUserFilter={this.getFilterUser}
           />
         )}
         {this.state.login && this.state.selected && (
